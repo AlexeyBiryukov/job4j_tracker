@@ -72,7 +72,7 @@ public class Tracker {
     public boolean replace(int id, Item item) {
       int index = indexOf(id);
       if (index != -1) {
-          items[index].setName(item.getName());
+          items[index] = item;
           item.setId(id);
           return true;
       }
@@ -83,6 +83,7 @@ public class Tracker {
         Item[] findAndDelete = new Item[size];
         int index = indexOf(id);
         int start = index + 1;
+        findAndDelete[start] = 
         int length = size - index;
         items[size - 1] = null;
         size--;
