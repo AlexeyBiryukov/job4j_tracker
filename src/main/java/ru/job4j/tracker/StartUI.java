@@ -63,7 +63,6 @@ public class StartUI {
         }
     }
 
-
     public void init(Input input, Tracker tracker, UserAction[] actions) {
         boolean run = true;
         while (run) {
@@ -91,6 +90,7 @@ public class StartUI {
                 new DeleteAction(),
                 new FindIdAction(),
                 new FindNameAction(),
+                new Exit()
         };
         new StartUI().init(input, tracker, actions);
     }
