@@ -9,7 +9,7 @@ public class ShowAction implements UserAction {
 
     @Override
     public String name() {
-        return " Show all ";
+        return "Show all";
     }
 
     @Override
