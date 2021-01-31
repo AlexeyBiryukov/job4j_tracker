@@ -67,8 +67,12 @@ public class StartUITest {
         new StartUI(output).init(in, tracker, actions);
             assertThat(output.toString(), is(
                     "Menu: " + System.lineSeparator() +
+                            "0. Create" + System.lineSeparator() +
+                            "1. Exit" + System.lineSeparator() +
                             "=== Create a new item ===" + System.lineSeparator() +
-                            "Menu: " + System.lineSeparator()
+                            "Menu: " + System.lineSeparator() +
+                            "0. Create" + System.lineSeparator() +
+                            "1. Exit" + System.lineSeparator()
             ));
     }
 
@@ -86,7 +90,11 @@ public class StartUITest {
         new StartUI(output).init(in, tracker, actions);
         assertThat(output.toString(), is(
                 "Menu: " + System.lineSeparator() +
-                        "Menu: " + System.lineSeparator()
+                        "0. Show all" + System.lineSeparator() +
+                        "1. Exit" + System.lineSeparator() +
+                        "Menu: " + System.lineSeparator() +
+                        "0. Show all" + System.lineSeparator() +
+                        "1. Exit" + System.lineSeparator()
         ));
     }
 
@@ -102,7 +110,8 @@ public class StartUITest {
         };
         new StartUI(output).init(in, tracker, actions);
         assertThat(output.toString(), is(
-                "Menu: " + System.lineSeparator()
+                "Menu: " + System.lineSeparator() +
+                "0. Exit" + System.lineSeparator()
         ));
     }
 
@@ -120,8 +129,12 @@ public class StartUITest {
         new StartUI(output).init(in, tracker, actions);
         assertThat(output.toString(), is(
                 "Menu: " + System.lineSeparator() +
+                        "0. Find by id" + System.lineSeparator() +
+                        "1. Exit" + System.lineSeparator() +
                         "Data with this id was not found" + System.lineSeparator() +
-                        "Menu: " + System.lineSeparator()
+                        "Menu: " + System.lineSeparator() +
+                        "0. Find by id" + System.lineSeparator() +
+                        "1. Exit" + System.lineSeparator()
         ));
     }
 
@@ -139,8 +152,12 @@ public class StartUITest {
         new StartUI(output).init(in, tracker, actions);
         assertThat(output.toString(), is(
                 "Menu: " + System.lineSeparator() +
+                        "0. Find by name" + System.lineSeparator() +
+                        "1. Exit" + System.lineSeparator() +
                         "Data with this name was not found" + System.lineSeparator() +
-                        "Menu: " + System.lineSeparator()
+                        "Menu: " + System.lineSeparator() +
+                        "0. Find by name" + System.lineSeparator() +
+                        "1. Exit" + System.lineSeparator()
         ));
     }
 }
