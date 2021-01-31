@@ -1,7 +1,6 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
@@ -21,6 +20,7 @@ public class StartUITest {
 
     @Test
     public void whenReplaceItem() {
+        Output output = new StubOutput();
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Replaced item"));
         String perlacedName = "New item name";
@@ -28,41 +28,119 @@ public class StartUITest {
                 new String[] {"0","1","New item name","1"}
         );
         UserAction[] actions = {
-                new EditAction(),
-                new Exit()
+                new EditAction(output),
+                new Exit(output)
         };
-        new StartUI().init(in, tracker, actions);
+        new StartUI(output).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()).getName(), is(perlacedName));
     }
 
 
     @Test
     public void whenDeleteItem() {
+        Output output = new StubOutput();
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Delete item"));
         Input in = new StubInput(
                 new String[] {"0","1","1"}
         );
         UserAction[] actions = {
-                new DeleteAction(),
-                new Exit()
+                new DeleteAction(output),
+                new Exit(output)
         };
-        new StartUI().init(in, tracker, actions);
+        new StartUI(output).init(in, tracker, actions);
         Item nullValue = null;
         assertThat(tracker.findById(item.getId()), is(nullValue));
     }
 
     @Test
     public void whenCreateItem() {
+        Output output = new StubOutput();
         Input in = new StubInput(
                 new String[] {"0", "Item name","1"}
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = {
-                new CreateAction(),
-                new Exit()
+                new CreateAction(output),
+                new Exit(output)
         };
-        new StartUI().init(in, tracker, actions);
-        assertThat(tracker.findAll()[0].getName(), is("Item name"));
+        new StartUI(output).init(in, tracker, actions);
+            assertThat(output.toString(), is(
+                    "Menu: " + System.lineSeparator() +
+                            "=== Create a new item ===" + System.lineSeparator() +
+                            "Menu: " + System.lineSeparator()
+            ));
+    }
+
+    @Test
+    public void whenShowAll() {
+        Output output = new StubOutput();
+        Input in = new StubInput(
+                new String[] {"0","1"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new ShowAction(output),
+                new Exit(output)
+        };
+        new StartUI(output).init(in, tracker, actions);
+        assertThat(output.toString(), is(
+                "Menu: " + System.lineSeparator() +
+                        "Menu: " + System.lineSeparator()
+        ));
+    }
+
+    @Test
+    public void whenExit() {
+        Output output = new StubOutput();
+        Input in = new StubInput(
+                new String[] {"0"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new Exit(output)
+        };
+        new StartUI(output).init(in, tracker, actions);
+        assertThat(output.toString(), is(
+                "Menu: " + System.lineSeparator()
+        ));
+    }
+
+    @Test
+    public void whenFindById() {
+        Output output = new StubOutput();
+        Input in = new StubInput(
+                new String[] {"0", "0", "1"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new FindIdAction(output),
+                new Exit(output)
+        };
+        new StartUI(output).init(in, tracker, actions);
+        assertThat(output.toString(), is(
+                "Menu: " + System.lineSeparator() +
+                        "Data with this id was not found" + System.lineSeparator() +
+                        "Menu: " + System.lineSeparator()
+        ));
+    }
+
+    @Test
+    public void whenFindByName() {
+        Output output = new StubOutput();
+        Input in = new StubInput(
+                new String[] {"0", "Item name", "1"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new FindNameAction(output),
+                new Exit(output)
+        };
+        new StartUI(output).init(in, tracker, actions);
+        assertThat(output.toString(), is(
+                "Menu: " + System.lineSeparator() +
+                        "Data with this name was not found" + System.lineSeparator() +
+                        "Menu: " + System.lineSeparator()
+        ));
     }
 }
