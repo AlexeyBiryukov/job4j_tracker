@@ -83,6 +83,7 @@ public class StartUITest {
                 new String[] {"0","1"}
         );
         Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("item"));
         UserAction[] actions = {
                 new ShowAction(output),
                 new Exit(output)
@@ -92,6 +93,7 @@ public class StartUITest {
                 "Menu: " + System.lineSeparator() +
                         "0. Show all" + System.lineSeparator() +
                         "1. Exit" + System.lineSeparator() +
+                        "id = 1, name = item" + System.lineSeparator() +
                         "Menu: " + System.lineSeparator() +
                         "0. Show all" + System.lineSeparator() +
                         "1. Exit" + System.lineSeparator()
@@ -119,9 +121,10 @@ public class StartUITest {
     public void whenFindById() {
         Output output = new StubOutput();
         Input in = new StubInput(
-                new String[] {"0", "0", "1"}
+                new String[] {"0", "1", "1"}
         );
         Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Find by id"));
         UserAction[] actions = {
                 new FindIdAction(output),
                 new Exit(output)
@@ -131,7 +134,7 @@ public class StartUITest {
                 "Menu: " + System.lineSeparator() +
                         "0. Find by id" + System.lineSeparator() +
                         "1. Exit" + System.lineSeparator() +
-                        "Data with this id was not found" + System.lineSeparator() +
+                        "id = 1, name = Find by id" + System.lineSeparator() +
                         "Menu: " + System.lineSeparator() +
                         "0. Find by id" + System.lineSeparator() +
                         "1. Exit" + System.lineSeparator()
@@ -142,9 +145,10 @@ public class StartUITest {
     public void whenFindByName() {
         Output output = new StubOutput();
         Input in = new StubInput(
-                new String[] {"0", "Item name", "1"}
+                new String[] {"0","Find by name","1","1"}
         );
         Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Find by name"));
         UserAction[] actions = {
                 new FindNameAction(output),
                 new Exit(output)
@@ -154,7 +158,7 @@ public class StartUITest {
                 "Menu: " + System.lineSeparator() +
                         "0. Find by name" + System.lineSeparator() +
                         "1. Exit" + System.lineSeparator() +
-                        "Data with this name was not found" + System.lineSeparator() +
+                        "id = 1, name = Find by name" + System.lineSeparator() +
                         "Menu: " + System.lineSeparator() +
                         "0. Find by name" + System.lineSeparator() +
                         "1. Exit" + System.lineSeparator()

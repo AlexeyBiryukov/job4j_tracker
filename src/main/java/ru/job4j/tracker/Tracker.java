@@ -59,7 +59,7 @@ public class Tracker {
     }
 
     private int indexOf(int id) {
-        int rsl = 0;
+        int rsl = -1;
         for (int index = 0; index < size; index++) {
             if (items[index].getId() == id) {
              rsl = index;
@@ -84,7 +84,7 @@ public class Tracker {
         int start = index + 1;
         int distPos = index;
         int length = size - index;
-        if (index != -1) {
+        if (index != 1) {
             System.arraycopy(items, start, items, distPos, length);
             items[size - 1] = null;
             size--;
