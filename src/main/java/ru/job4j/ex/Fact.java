@@ -6,12 +6,12 @@ public class Fact {
     }
 
     public static int calc(int n) {
-        int rsl = -1;
+        int rsl = 1;
         if (n < 0) {
             throw new IllegalArgumentException("метод вызывается с некорректными параметрами.");
         }
-        for (int index = 0; index <= n; index++) {
-            rsl += index;
+        for (int index = 1; index <= n; index++) {
+            rsl *= index;
         }
         return rsl;
     }
