@@ -55,7 +55,7 @@ public class Tracker {
         /* Находим индекс */
        int index = indexOf(id);
         /* Если индекс найден возвращаем item, иначе null */
-       return index != 1 ? items[index] : null;
+       return index != -1 ? items[index] : null;
     }
 
     private int indexOf(int id) {
@@ -84,7 +84,7 @@ public class Tracker {
         int start = index + 1;
         int distPos = index;
         int length = size - index;
-        if (index != 1) {
+        if (index != -1) {
             System.arraycopy(items, start, items, distPos, length);
             items[size - 1] = null;
             size--;
